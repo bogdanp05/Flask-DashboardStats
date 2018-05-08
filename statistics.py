@@ -2,6 +2,8 @@ import requests
 from bs4 import BeautifulSoup
 import csv
 import datetime
+import sys
+import os
 
 stars = ''
 downloads = ''
@@ -26,9 +28,9 @@ else:
     print('Number of downloads: %s' %(downloads))
 
 timestamp = datetime.datetime.now()
-with open('stats.csv', 'a') as writeFile:
+with open(os.path.join(sys.path[0],'stats.csv'), 'a') as writeFile:
     writer = csv.writer(writeFile)
-    writer.writerow([stars, downloads, timestamp.strftime("%Y-%m-%d %H:%M:%S")])
+    writer.writerow([timestamp.strftime("%Y-%m-%d %H:%M:%S"), stars, downloads])
 
 
 
