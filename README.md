@@ -5,8 +5,14 @@ Useful statistics for the [Flask-MonitoringDashboard](https://github.com/flask-d
 Saves the number of **Github stars** and **Pypi downloads** into
 _stats.csv_. The file has the format (stars, downloads, time).
 
-The Python script can be run using a Linux cronjob as described [here](https://kvz.io/blog/2007/07/29/schedule-tasks-on-linux-using-crontab/).
-For instance to run it every 6 hours, I added the following _cronjob_:
+This repository contains a make file with the following commands:
+
+- Fetching stats: `make stats`
+- Viewing a graph: `make graph`
+- Auto committing: `make commit`
+
+The `make stats` and `make commit` can be run using a Linux cronjob as described [here](https://kvz.io/blog/2007/07/29/schedule-tasks-on-linux-using-crontab/).
+For instance to run it every hour, add the following _cronjob_:
 ```
-0 */6 * * * python3 /home/bogdan/statistics_flask/statistics.py >/dev/null 2>&1
+@hourly cd <REPO FOLDER> && make stats >/dev/null 2>&1 && make commit >/dev/null 2>&1 
 ```
